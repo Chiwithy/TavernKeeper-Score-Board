@@ -114,11 +114,9 @@ public class Model {
 
     public void completeQuest (int pId, int qId) {
         String reward = questRewards.get (qId);
-        System.out.println(reward);
         if (!"Gold Back".equals (reward))
             playerRewards.get (pId).add (reward);
         
-        System.out.println (playerRewards.get (pId).toString ());
         this.addPoints (pId, questPoints.get (qId));
     }
     
