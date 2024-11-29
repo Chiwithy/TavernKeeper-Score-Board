@@ -281,6 +281,8 @@ public class View {
             JButton useButton = new JButton ("Use Ability");
             useButton.addActionListener (useEvent -> {
                 controller.useAbility (pId, currCardName);
+                confirmDialog.dispose ();
+                abilitiesDialog.dispose ();
             });
         
             JPanel actionButtonPanel = new JPanel ();
