@@ -4,11 +4,10 @@ import java.util.Random;
 
 public class Model {
     public String stringSeparator = "\\|";
-    private int nWinThreshold = 150;
+    private int nWinThreshold = 120;
     private int nTurnCount = 0;
     private int winnerId = -1;
 
-    // Parallel Arrays (cause too lazy to make/track a class)
     // Parallel for players
     private ArrayList<String> players = new ArrayList<String> ();
     private ArrayList<Integer> points = new ArrayList<Integer> ();
@@ -143,13 +142,7 @@ public class Model {
         
         this.addPoints (pId, questPoints.get (qId));
     }
-
     
-    // public String getRandomEvent () {
-
-    // }
-
-    // Use for random events
     public int generateRandomNumber (int min, int max) {
         if (min > max) {
             int nTemp;
@@ -159,7 +152,7 @@ public class Model {
         }
 
         Random random = new Random ();
-        return random.nextInt ((max-min) + 1) + min;
+        return random.nextInt (max-min) + min;
     }
 
     public int getTurn () {

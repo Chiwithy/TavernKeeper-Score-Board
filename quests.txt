@@ -1,26 +1,26 @@
-Corrupted Bun|1|Bunny Dango|1
-Rat Infestation|1|Moonshine|1
-Book Delivery|1|Elder Bury|1
-In the Weeds|1|Half-a-Mind|1
-Relic Unveiling|1|Taste of Heaven|1
-Lost Tongues|1|Taste of Heaven|1
-Plant Delivery|1|The 3rd Eye|1
-Missing Tools|1|The Hammer|1
-All Hands on Deck|1|The 3rd Eye|1
-Training Exercise|1|Warrior's Spirit|1
-Nobody Lives Forever|1|Elder Bury|1
-Hold the Line!|1|Moonshine|1
-I Need Healing|1|An Orc Fashioned|1
-Bandit Beatdown|1|Bunny Dango|1
-Divine Inspiration|1|The Lotus|1
-Lost Livestock|1|Gobgin|1
-Tactics Drills|1|Fireball|1
-Potion Delivery|1|Half-a-Mind|1
-Tonic Testing|1|Bunny Dango|1
-Devil's Draft|1|The Hammer|1
-Tipsy Troubles|1|Owl Beer|1
-Rescue Operation|1|The Lotus|1
-Dangerous Hunts|1|Fireball|1
+Corrupted Bun|1|Bunny Dango|2
+Rat Infestation|1|Moonshine|2
+Book Delivery|1|Elder Bury|2
+In the Weeds|1|Half-a-Mind|2
+Relic Unveiling|1|Taste of Heaven|2
+Lost Tongues|1|Taste of Heaven|2
+Plant Delivery|1|The 3rd Eye|2
+Missing Tools|1|The Hammer|2
+All Hands on Deck|1|The 3rd Eye|2
+Training Exercise|1|Warrior's Spirit|2
+Nobody Lives Forever|1|Elder Bury|2
+Hold the Line!|1|Moonshine|2
+I Need Healing|1|An Orc Fashioned|2
+Bandit Beatdown|1|Bunny Dango|2
+Divine Inspiration|1|The Lotus|2
+Lost Livestock|1|Gobgin|2
+Tactics Drills|1|Fireball|2
+Potion Delivery|1|Half-a-Mind|2
+Tonic Testing|1|Bunny Dango|2
+Devil's Draft|1|The Hammer|2
+Tipsy Troubles|1|Owl Beer|2
+Rescue Operation|1|The Lotus|2
+Dangerous Hunts|1|Fireball|2
 Mazes and Minotaurs|2|Nachos|10
 Another Rat Infestation|2|Cold Cuts|10
 Mind-Flayer Lair|2|Mind Flayer Calamari|10
