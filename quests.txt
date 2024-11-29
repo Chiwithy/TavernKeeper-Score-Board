@@ -1,0 +1,45 @@
+Corrupted Bun|1|Bunny Dango|1
+Rat Infestation|1|Moonshine|1
+Book Delivery|1|Elder Bury|1
+In the Weeds|1|Half-a-Mind|1
+Relic Unveiling|1|Taste of Heaven|1
+Lost Tongues|1|Taste of Heaven|1
+Plant Delivery|1|The 3rd Eye|1
+Missing Tools|1|The Hammer|1
+All Hands on Deck|1|The 3rd Eye|1
+Training Exercise|1|Warrior's Spirit|1
+Nobody Lives Forever|1|Elder Bury|1
+Hold the Line!|1|Moonshine|1
+I Need Healing|1|An Orc Fashioned|1
+Bandit Beatdown|1|Bunny Dango|1
+Divine Inspiration|1|The Lotus|1
+Lost Livestock|1|Gobgin|1
+Tactics Drills|1|Fireball|1
+Potion Delivery|1|Half-a-Mind|1
+Tonic Testing|1|Bunny Dango|1
+Devil's Draft|1|The Hammer|1
+Tipsy Troubles|1|Owl Beer|1
+Rescue Operation|1|The Lotus|1
+Dangerous Hunts|1|Fireball|1
+Mazes and Minotaurs|2|Nachos|10
+Another Rat Infestation|2|Cold Cuts|10
+Mind-Flayer Lair|2|Mind Flayer Calamari|10
+Holy Mysteries|2|Everything Bagel|10
+Ancient History|2|Ultimate Hero|10
+Diggy Diggy Hole|2|Transmogri-Pie|10
+Woodland Rescue|2|Ultimate Hero|10
+Thinking with Portals|2|Moist Chocolate Cake|10
+Clandestine Courier|2|Cold Cuts|10
+Back to the Mines|2|Hex on a Beach|10
+Save Two Birds from One Stone|2|Transmogri-Pie|10
+Sneak Attack|2|Cold Cuts|10
+3 Halflings in a Trenchcoat|2|Moist Chocolate Cake|10
+End of the Line|2|Mimic Minestrone|10
+Divoc XCI|2|Everything Bagel|10
+Melody for a Noble|2|Loyalty Card|10
+Bat Out Of Hell|3|Gold Back|50
+Here There Be Dragons|3|Gold Back|50
+Emperor's Guard|3|Gold Back|50
+Ruler of the Circles|3|Gold Back|50
+We are the Realm|3|Gold Back|50
+Arcane Star|3|Gold Back|50
