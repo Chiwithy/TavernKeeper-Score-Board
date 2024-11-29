@@ -106,10 +106,6 @@ public class Model {
             e.printStackTrace ();
         }
     }
-
-    // public String getRandomEvent () {
-
-    // }
     
     public boolean checkWinner () {
         for (int i = 0; i < points.size (); i++)
@@ -148,6 +144,12 @@ public class Model {
         this.addPoints (pId, questPoints.get (qId));
     }
 
+    
+    // public String getRandomEvent () {
+
+    // }
+
+    // Use for random events
     public int generateRandomNumber (int min, int max) {
         if (min > max) {
             int nTemp;

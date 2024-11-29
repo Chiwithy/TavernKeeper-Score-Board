@@ -154,9 +154,7 @@ public class View {
 
         System.out.println("Starting game with players: " + players);
 
-        //Inits the lists in the model and in here
         initLists ();
-
         showScorePanel();
     }
 
@@ -581,11 +579,35 @@ public class View {
         checkForWinner ();
     }
 
+    public void restartGame () {
+        initLists ();
+        showScorePanel ();
+    }
+
     public void checkForWinner () {
-        boolean winnerFound = controller.checkWinner ();
+        boolean winnerFound = controller.checkWinner();
         if (winnerFound) {
             int winnerId = controller.getWinner ();
-            System.out.println("winner is " + players.get (winnerId));  // make dialog for winner
+            String winnerMessage = players.get (winnerId) + " has achieved Legendary Tavernkeeper status";
+
+            Object[] options = {"Exit to Main Menu", "Start New Game with Current Players"};
+
+            int choice = JOptionPane.showOptionDialog (
+                    null,
+                    winnerMessage,
+                    "Game Over",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    options,
+                    options[0]
+            );
+            
+            if (choice == 0) {  // To Main Menu
+                showMainMenu ();
+            } else if (choice == 1) {   // Restart Game
+                restartGame();
+            }
         }
     }
 }
