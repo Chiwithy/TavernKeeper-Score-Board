@@ -37,6 +37,10 @@ public class Controller {
         model.completeQuest(pId, qId);
     }
 
+    public int getRandomNumber (int min, int max) {
+        return model.generateRandomNumber (min, max);
+    }
+
     public ArrayList<Integer> getAllPoints () {
         return model.getAllPoints ();
     }
@@ -45,6 +49,9 @@ public class Controller {
         return model.getPoints (pId);
     }
 
+    public String getQuestById (int qId) {
+        return model.questNames.get (qId);
+    }
     public int getQuestId (String questName) {
         return model.questNames.indexOf ((String) questName);
     }

@@ -131,15 +131,16 @@ public class Model {
     }
 
     public void useAbility (int pId, String abilityName) {
-        int rewardIndex = playerRewards.get (pId).indexOf (abilityName);
-        playerRewards.remove (rewardIndex);
+        playerRewards.get (pId).remove ((String) abilityName);
     }
 
     public void completeQuest (int pId, int qId) {
         String reward = questRewards.get (qId);
+        System.out.println(reward);
         if (!"Gold Back".equals (reward))
-            playerRewards.get (pId).add (questRewards.get (qId));
+            playerRewards.get (pId).add (reward);
         
+        System.out.println (playerRewards.get (pId).toString ());
         this.addPoints (pId, questPoints.get (qId));
     }
     

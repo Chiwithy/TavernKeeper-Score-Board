@@ -15,13 +15,18 @@ public class View {
     private ArrayList<JTextField> playerFields;
 
     private ArrayList<JLabel> playerScores;
-    private ArrayList<String> questNames;
+    private ArrayList<String> questEasy;
+    private ArrayList<String> questMedium;
+    private ArrayList<String> questHard;
 
     private Controller controller;
 
     private String currCardName = "";
     private String currCardImage = "";
+    private int currCardDifficulty = 1;
     private JPanel lastClickedCard = null;
+
+    private int questNum = 3;
 
     public View (Controller controller) {
         frame = new JFrame ("Game Configuration");
@@ -163,7 +168,13 @@ public class View {
         playerScores = new ArrayList<JLabel> ();
 
         //Get loaded quest and ability names from model
-        questNames = controller.getAllQuestNames ();
+        questEasy = new ArrayList<String> ();
+        questMedium = new ArrayList<String> ();
+        questHard = new ArrayList<String> ();
+
+        addToQuestList(1, questNum);
+        addToQuestList(2, questNum);
+        addToQuestList(3, questNum);
     }
 
     private void showScorePanel () {
@@ -248,7 +259,7 @@ public class View {
             // Filenames are in lower case
             String imagePath = "resources/rewards/" + abilityName.toLowerCase () + ".png"; // Adjust path as needed
 
-            card = createCard (abilityName, imagePath, viewButton, useAbilityButton);
+            card = createCard (abilityName, imagePath, viewButton, useAbilityButton, -1);
             cardsPanel.add(card);
         }
     
@@ -321,7 +332,7 @@ public class View {
         JButton viewButton = new JButton ("View");
         viewButton.setEnabled (false); // Initially disabled
 
-        JButton actionButton = new JButton ("Complete Quest");
+        JButton actionButton = new JButton ("Claim Quest");
         actionButton.setEnabled (false); // Initially disabled
     
         // Add sections for Easy, Medium, Hard quests
@@ -358,41 +369,42 @@ public class View {
     }
     
     private JPanel createQuestSection (int difficulty, JButton viewButton, JButton actionButton) {
-        ArrayList<Integer> diffIndices = controller.getQuestIndicesByDifficulty (difficulty);   // Quest indices of a difficulty
-        String sectionHeader = "Easy Quests - 1 Reputation Each";
+        String sectionHeader = "Easy Quests - 2 Reputation Each";
+        String diffFolder = "easy";
+        ArrayList<String> questList = questEasy;
 
-        if (difficulty == 2)
+        if (difficulty == 2) {
             sectionHeader = "Medium Quests - 10 Reputation Each";
-        else if (difficulty == 3)
+            questList = questMedium;
+            diffFolder = "medium";
+        }
+        else if (difficulty == 3) {
             sectionHeader = "Hard Quests - 50 Reputation Each";
+            questList = questHard;
+            diffFolder = "hard";
+        }
         
         // Panel for difficulty section
         JPanel sectionPanel = new JPanel ();
         sectionPanel.setLayout (new BorderLayout ());
         sectionPanel.setBorder (BorderFactory.createEmptyBorder (10, 0, 20, 0));
 
-    
         // Section header
-        JLabel headerLabel = new JLabel(sectionHeader, SwingConstants.LEFT);
-        headerLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        sectionPanel.add(headerLabel, BorderLayout.NORTH);
+        JLabel headerLabel = new JLabel (sectionHeader, SwingConstants.LEFT);
+        headerLabel.setFont (new Font ("Arial", Font.BOLD, 16));
+        sectionPanel.add (headerLabel, BorderLayout.NORTH);
     
         // Grid layout for quest cards
         JPanel cardsPanel = new JPanel();
         cardsPanel.setLayout(new GridLayout(0, 4, 15, 15)); // Max 4 cards per row with gaps (adjusted to 4 columns)
     
         // Add quest cards to the grid
-        for (int i = 0; i < diffIndices.size (); i++) {
-            String questName = questNames.get (diffIndices.get (i));
-
-            String diffFolder = "easy";
-            if (difficulty == 2)
-                diffFolder = "medium";
-            else if (difficulty == 3)
-                diffFolder = "hard";
+        int numQuests = questList.size () > questNum ? questNum : questList.size ();
+        for (int i = 0; i < numQuests; i++) {
+            String questName = questList.get (i);
 
             String imagePath = "resources/quests/" + diffFolder + "/" + questName.toLowerCase() + ".png"; // Adjust path as needed
-            JPanel card = createCard (questName, imagePath, viewButton, actionButton);
+            JPanel card = createCard (questName, imagePath, viewButton, actionButton, difficulty);
             cardsPanel.add (card);
         }
     
@@ -400,10 +412,27 @@ public class View {
         return sectionPanel;
     }
 
+    private void addToQuestList (int difficulty, int quantity) {
+        ArrayList<Integer> diffIndices = controller.getQuestIndicesByDifficulty (difficulty);   // Quest indices of a difficulty
+        quantity = diffIndices.size () > quantity ? quantity : diffIndices.size ();
+
+        for (int i = 0; i < quantity; i++) {
+            int randId = controller.getRandomNumber (0, diffIndices.size ());
+            String questName = controller.getQuestById (diffIndices.get (randId));
+            diffIndices.remove (randId);
+            
+            if (difficulty == 2)
+                questMedium.add (questName);
+            else if (difficulty == 3)
+                questHard.add (questName);
+            else questEasy.add (questName);
+        }
+    }
+
     private void showQuestDialog (String questName, JDialog parentDialog) {
         int cId = controller.getQuestId (questName);
 
-        JDialog questDialog = new JDialog (parentDialog, "Complete Quest", true);
+        JDialog questDialog = new JDialog (parentDialog, "Claim Quest", true);
         questDialog.setLayout (new BorderLayout());
     
         // Panel for radio buttons
@@ -412,8 +441,8 @@ public class View {
         ButtonGroup group = new ButtonGroup ();
         ArrayList<JRadioButton> radioButtons = new ArrayList<JRadioButton> ();  // Arraylist for player-radio button index
     
-        JButton completeButton = new JButton ("Complete Quest");
-        completeButton.setEnabled (false);
+        JButton claimButton = new JButton ("Claim Quest");
+        claimButton.setEnabled (false);
         
         JButton backButton = new JButton("Back");
         backButton.addActionListener(ev -> questDialog.dispose());
@@ -426,8 +455,8 @@ public class View {
             radioButtons.add (radioButton);
 
             radioButton.addActionListener (e -> {
-                if (!completeButton.isEnabled ())
-                    completeButton.setEnabled (true);
+                if (!claimButton.isEnabled ())
+                    claimButton.setEnabled (true);
             });
         }
     
@@ -440,8 +469,14 @@ public class View {
     
         buttonPanel.add (backButton);
 
-        completeButton.addActionListener (e -> {
-            int selectedIndex = -1;
+        claimButton.addActionListener (e -> {
+            int selectedIndex = -1;    
+            ArrayList<String> questList = questEasy;
+            if (currCardDifficulty == 2)
+                questList = questMedium;
+            else if (currCardDifficulty == 3)
+                questList = questHard;
+
             for (int i = 0; i < radioButtons.size (); i++) {
                 if (radioButtons.get (i).isSelected ()) {
                     selectedIndex = i;
@@ -451,15 +486,18 @@ public class View {
 
             if (selectedIndex != -1) {
                 controller.completeQuest (selectedIndex, cId);
+                questList.remove ((String) questName);
+                addToQuestList (currCardDifficulty, 1);
+                
                 questDialog.dispose ();
                 parentDialog.dispose ();
 
                 updateScore (selectedIndex);
             } else {
-                completeButton.setEnabled (false);
+                claimButton.setEnabled (false);
             }
         });
-        buttonPanel.add (completeButton);
+        buttonPanel.add (claimButton);
     
         questDialog.add (buttonPanel, BorderLayout.SOUTH);
     
@@ -473,7 +511,7 @@ public class View {
         questDialog.setVisible (true);
     }
 
-    private JPanel createCard (String cardName, String imagePath, JButton viewButton, JButton actionButton) {
+    private JPanel createCard (String cardName, String imagePath, JButton viewButton, JButton actionButton, int cardDifficulty) {
         JPanel card = new JPanel ();
         card.setLayout (new BorderLayout ());
     
@@ -498,14 +536,14 @@ public class View {
         card.addMouseListener (new MouseAdapter() {
             @Override
             public void mouseClicked (MouseEvent e) {
-                cardClicked (card, viewButton, actionButton, cardName, imagePath);
+                cardClicked (card, viewButton, actionButton, cardName, imagePath, cardDifficulty);
             }
         });
 
         return card;
     }
 
-    private void cardClicked (JPanel cardPanel, JButton viewButton, JButton actionButton, String cardName, String imagePath) {
+    private void cardClicked (JPanel cardPanel, JButton viewButton, JButton actionButton, String cardName, String imagePath, int cardDifficulty) {
         // Enable the view/action buttons
         viewButton.setEnabled (true);
         actionButton.setEnabled (true);
@@ -513,6 +551,7 @@ public class View {
         // Set current selected cards
         currCardName = cardName;
         currCardImage = imagePath;
+        currCardDifficulty = cardDifficulty;
 
         try {
             // Remove previously selected card's border/background
