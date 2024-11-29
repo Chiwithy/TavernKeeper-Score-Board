@@ -22,14 +22,10 @@ public class Model {
     public ArrayList<Integer> questMediumIndices = new ArrayList<Integer> ();
     public ArrayList<Integer> questHardIndices = new ArrayList<Integer> ();
 
-    // Parallel for rewards
-    public ArrayList<String> rewards = new ArrayList<String> ();
-
     public void initModel (ArrayList<String> names) {
         this.resetLists ();
         this.initPlayers (names);
         this.initQuests ();
-        this.initRewards ();
     }
 
     public void resetLists () {
@@ -43,8 +39,6 @@ public class Model {
         questEasyIndices = new ArrayList<Integer> ();
         questMediumIndices = new ArrayList<Integer> ();
         questHardIndices = new ArrayList<Integer> ();
-
-        rewards = new ArrayList<String> ();
     }
 
     private void initPlayers (ArrayList<String> names) {
@@ -55,22 +49,6 @@ public class Model {
             players.add (names.get (i));
             points.add (0);
             playerRewards.add (new ArrayList<String> ());
-        }
-    }
-
-    private void initRewards () {
-        try {
-            String fileName = "rewards.txt";
-            BufferedReader reader = new BufferedReader (new FileReader (fileName));
-            String line;
-
-            while ((line = reader.readLine ()) != null) {
-                rewards.add (line);
-            }
-
-            reader.close ();
-        } catch (IOException e) {
-            e.printStackTrace ();
         }
     }
 

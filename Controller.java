@@ -72,12 +72,4 @@ public class Controller {
         else
             return model.questEasyIndices;
     }
-
-    public ArrayList<String> getAllAbilityNames () {
-        return model.rewards;
-    }
-
-    public String getCardInfo (int cId) {
-        return model.rewards.get (cId);
-    }
 }
