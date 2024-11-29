@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Model {
     public String stringSeparator = "\\|";
-    private int nWinThreshold = 25;
+    private int nWinThreshold = 150;
     private int nTurnCount = 0;
     private int winnerId = -1;
 
@@ -141,7 +141,10 @@ public class Model {
     }
 
     public void completeQuest (int pId, int qId) {
-        playerRewards.get (pId).add (questRewards.get (qId));
+        String reward = questRewards.get (qId);
+        if (!"Gold Back".equals (reward))
+            playerRewards.get (pId).add (questRewards.get (qId));
+        
         this.addPoints (pId, questPoints.get (qId));
     }
 
